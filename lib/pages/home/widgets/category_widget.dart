@@ -1,8 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopme_mobile/blocs/category_bloc/category_bloc.dart';
+import 'package:shopme_mobile/blocs/category_bloc/category_state.dart';
+import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/models/remote/category/category.dart';
 import 'package:shopme_mobile/data/sources/remote/services/api_service.dart';
 import 'package:dio/dio.dart';
+import 'package:shopme_mobile/di/injection.dart';
 
 class CategoryWidget extends StatefulWidget {
   @override
@@ -10,16 +17,86 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class CategoryWidgetState extends State<CategoryWidget> {
+  late CategoryBloc _getCategoriesBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _getCategoriesBloc = getIt<CategoryBloc>();
+    _getCategoriesBloc.getAllCategories();
+  }
+
+  @override
+  void dispose() {
+    _getCategoriesBloc.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final client = RestClient(Dio(BaseOptions(contentType: "application/json")));
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.3,
+      color: Colors.white,
+      child: Column(
+        children: [
+          _buildTitle(),
+          const SizedBox(height: 10),
+          Expanded(
+            child: _buildCategories(),
+          ),
+        ],
+      ),
+    );
+  }
 
-    return FutureBuilder<List<Category>>(
-      future: client.getCategories(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final List<Category>? categories = snapshot.data;
-          return _buildCategory(context, categories);
+  Widget _buildTitle() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text(
+            TranslateHelper.category,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              TranslateHelper.readMore,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildCategories() {
+    return BlocBuilder(
+      bloc: _getCategoriesBloc,
+      builder: (_, state) {
+        print(state);
+        if (state is GetCategorySuccessState) {
+          List<Category> categories = state.categories.getRange(0, 10).toList();
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (_, int index) {
+              return _buildCategoryItem(index, categories);
+            },
+          );
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -29,9 +106,23 @@ class CategoryWidgetState extends State<CategoryWidget> {
     );
   }
 
-  Widget _buildCategory(BuildContext context, List<Category>? categories) {
-    return Center(
-      child: Text((categories != null) ? categories[0].name : ""),
+  Widget _buildCategoryItem(int index, List<Category> categories) {
+    return SizedBox(
+      child: Column(
+        children: [
+          Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.blue,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(categories[index].name),
+        ],
+      ),
     );
   }
 }

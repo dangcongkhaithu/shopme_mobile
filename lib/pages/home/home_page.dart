@@ -4,6 +4,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/pages/home/widgets/category_widget.dart';
 import 'package:shopme_mobile/pages/home/widgets/header_widget.dart';
+import 'package:shopme_mobile/pages/home/widgets/product_widget.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,11 +25,6 @@ class HomepageState extends State<HomePage> {
     return Stack(
       //fit: StackFit.expand,
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: marginTop,
-          color: Colors.black,
-        ),
         CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
@@ -36,7 +32,14 @@ class HomepageState extends State<HomePage> {
             _buildHeader(),
             SliverToBoxAdapter(child: const SizedBox(height: 10)),
             _buildCategory(),
+            SliverToBoxAdapter(child: const SizedBox(height: 10)),
+            _buildProduct(),
           ],
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: marginTop,
+          color: Colors.black,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -55,6 +58,12 @@ class HomepageState extends State<HomePage> {
   Widget _buildCategory() {
     return SliverToBoxAdapter(
       child: CategoryWidget(),
+    );
+  }
+
+  Widget _buildProduct() {
+    return SliverToBoxAdapter(
+      child: ProductWidget(),
     );
   }
 

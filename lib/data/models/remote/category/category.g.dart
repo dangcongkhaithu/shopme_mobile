@@ -13,6 +13,7 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
     alias: json['alias'] as String,
     image: json['image'] as String,
     enable: json['enable'] as bool,
+    hasChildren: json['has_children'] as bool,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'alias': instance.alias,
       'image': instance.image,
       'enable': instance.enable,
+      'has_children': instance.hasChildren,
     };

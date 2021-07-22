@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:shopme_mobile/data/models/remote/category/category.dart';
-import 'package:shopme_mobile/data/models/remote/test/test.dart';
 
 part 'api_service.g.dart';
 

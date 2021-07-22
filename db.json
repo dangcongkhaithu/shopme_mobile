@@ -5,14 +5,83 @@
       "name": "Computer",
       "alias": "alias 1",
       "image": "image1.png",
-      "enable": true
+      "enable": true,
+      "has_children" : true
     },
     {
       "id": 2,
       "name": "Phone",
       "alias": "alias 1",
       "image": "image2.png",
-      "enable": true
+      "enable": true,
+      "has_children" : false
+    },
+    {
+      "id": 3,
+      "name": "Camera",
+      "alias": "alias 1",
+      "image": "image1.png",
+      "enable": true,
+      "has_children" : true
+    },
+    {
+      "id": 4,
+      "name": "Mobile phone",
+      "alias": "alias 1",
+      "image": "image2.png",
+      "enable": true,
+      "has_children" : false
+    },
+    {
+      "id": 5,
+      "name": "Laptop",
+      "alias": "alias 1",
+      "image": "image1.png",
+      "enable": true,
+      "has_children" : true
+    },
+    {
+      "id": 6,
+      "name": "Headphone",
+      "alias": "alias 1",
+      "image": "image2.png",
+      "enable": true,
+      "has_children" : false
+    },
+    {
+      "id": 7,
+      "name": "Tablet",
+      "alias": "alias 1",
+      "image": "image1.png",
+      "enable": true,
+      "has_children" : true
+    },
+    {
+      "id": 8,
+      "name": "Clock",
+      "alias": "alias 1",
+      "image": "image2.png",
+      "enable": true,
+      "has_children" : false
+    },
+    {
+      "id": 9,
+      "name": "Television",
+      "alias": "alias 1",
+      "image": "image1.png",
+      "enable": true,
+      "has_children" : true
+    },
+    {
+      "id": 10,
+      "name": "Fan",
+      "alias": "alias 1",
+      "image": "image2.png",
+      "enable": true,
+      "has_children" : false
     }
+  ],
+  "product" : [
+
   ]
 }

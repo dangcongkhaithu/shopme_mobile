@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopme_mobile/pages/account/account_page.dart';
+import 'package:shopme_mobile/pages/category/category_page.dart';
 import 'package:shopme_mobile/pages/home/home_page.dart';
-import 'package:shopme_mobile/pages/search/search_page.dart';
 
 class CommonPage extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class CommonPageState extends State<CommonPage> {
   void initState() {
     super.initState();
     _selectedIndexNotifier = ValueNotifier(0);
-    _pages = [HomePage(), SearchPage(), AccountPage()];
+    _pages = [HomePage(), CategoryPage(), AccountPage()];
   }
 
   @override
@@ -35,15 +35,17 @@ class CommonPageState extends State<CommonPage> {
 
   Widget _buildBottomNavigationBar(int selectedIndex) {
     return BottomNavigationBar(
-      selectedItemColor: Colors.black,
+      selectedItemColor: Colors.blue,
+      backgroundColor: Colors.black ,
+      unselectedItemColor: Colors.white,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: "Search",
+          icon: Icon(Icons.category),
+          label: "Category",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),

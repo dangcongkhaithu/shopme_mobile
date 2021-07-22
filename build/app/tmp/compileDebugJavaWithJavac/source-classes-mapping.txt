@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-mobilecom/khaithumc/shopme_mobile/BuildConfig.java
- mobilecom.khaithumc.shopme_mobile.BuildConfig

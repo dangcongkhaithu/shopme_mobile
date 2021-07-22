@@ -2,6 +2,13 @@
   "common": {
     "home": "Home",
     "search": "Search",
-    "account": "Account"
+    "account": "Account",
+    "read_more": "Read more"
+  },
+  "error" : {
+    "something_went_wrong" : "Something went wrong"
+  },
+  "category": {
+    "category": "Category"
   }
 }
