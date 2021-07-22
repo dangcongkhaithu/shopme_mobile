@@ -1,0 +1,18 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Computer",
+      "alias": "alias 1",
+      "image": "image1.png",
+      "enable": true
+    },
+    {
+      "id": 2,
+      "name": "Phone",
+      "alias": "alias 1",
+      "image": "image2.png",
+      "enable": true
+    }
+  ]
+}
