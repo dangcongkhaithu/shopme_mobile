@@ -1,14 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_bloc.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
-import 'package:shopme_mobile/data/models/remote/category/category.dart';
-import 'package:shopme_mobile/data/sources/remote/services/api_service.dart';
-import 'package:dio/dio.dart';
+import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
 import 'package:shopme_mobile/di/injection.dart';
 
 class CategoryWidget extends StatefulWidget {

@@ -15,4 +15,11 @@ class TranslateHelper {
   //category
   static String get category => 'category.category'.tr();
 
+  //product
+  static String get product => 'product.product'.tr();
+
+  //Account
+  static String get signIn => 'account.sign_in'.tr();
+
+  static String get signUp => 'account.sign_up'.tr();
 }

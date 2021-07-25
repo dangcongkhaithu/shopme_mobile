@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shopme_mobile/pages/account/account_page.dart';
 import 'package:shopme_mobile/pages/category/category_page.dart';
 import 'package:shopme_mobile/pages/home/home_page.dart';
+import 'package:shopme_mobile/resources/app_colors.dart';
 
 class CommonPage extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class CommonPageState extends State<CommonPage> {
   Widget _buildBottomNavigationBar(int selectedIndex) {
     return BottomNavigationBar(
       selectedItemColor: Colors.blue,
-      backgroundColor: Colors.black ,
+      backgroundColor: AppColors.mainColor,
       unselectedItemColor: Colors.white,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(

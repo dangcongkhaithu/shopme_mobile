@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
+import 'package:shopme_mobile/blocs/product_bloc/product_bloc.dart';
+import 'package:shopme_mobile/blocs/product_bloc/product_state.dart';
+import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
+import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/home/widgets/category_widget.dart';
 import 'package:shopme_mobile/pages/home/widgets/header_widget.dart';
-import 'package:shopme_mobile/pages/home/widgets/product_widget.dart';
+import 'package:shopme_mobile/resources/app_colors.dart';
+import 'package:shopme_mobile/widget/common/product_widget.dart';
+import 'package:shopme_mobile/widget/common/search_bar_widget.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +17,30 @@ class HomePage extends StatefulWidget {
 }
 
 class HomepageState extends State<HomePage> {
+  late ProductBloc _productBloc;
+  late ValueNotifier<List<Product>> _productsNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _productBloc = getIt<ProductBloc>();
+    _productsNotifier = ValueNotifier([]);
+
+    _productBloc.stream.listen((event) {
+      print(event);
+      if (event is GetProductSuccessState) {
+        _productsNotifier.value = event.products;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _productBloc.close();
+    _productsNotifier.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BasePage(
@@ -39,7 +67,7 @@ class HomepageState extends State<HomePage> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: marginTop,
-          color: Colors.black,
+          color: AppColors.mainColor,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -62,52 +90,20 @@ class HomepageState extends State<HomePage> {
   }
 
   Widget _buildProduct() {
+    _productBloc.getProducts();
     return SliverToBoxAdapter(
-      child: ProductWidget(),
+      child: ValueListenableBuilder<List<Product>>(
+        valueListenable: _productsNotifier,
+        builder: (_, products, __) {
+          return ProductWidget(
+            products: products,
+          );
+        },
+      ),
     );
   }
 
   Widget _buildSearchField() {
-    return FloatingSearchBar(
-      hint: TranslateHelper.search,
-      hintStyle: TextStyle(
-        fontStyle: FontStyle.italic,
-      ),
-      transitionCurve: Curves.easeInOutCubic,
-      transition: CircularFloatingSearchBarTransition(),
-      physics: const BouncingScrollPhysics(),
-      onQueryChanged: (query) {
-        // Call your model, bloc, controller here.
-      },
-      actions: [
-        FloatingSearchBarAction.searchToClear(
-          showIfClosed: false,
-        ),
-        FloatingSearchBarAction(
-          showIfOpened: true,
-          child: CircularButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              print("Navigate To Cart");
-            },
-          ),
-        ),
-      ],
-      builder: (context, transition) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            color: Colors.white,
-            elevation: 4.0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: Colors.accents.map((color) {
-                return Container(height: 112, color: color);
-              }).toList(),
-            ),
-          ),
-        );
-      },
-    );
+    return SearchBarWidget();
   }
 }

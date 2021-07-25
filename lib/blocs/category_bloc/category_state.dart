@@ -1,5 +1,5 @@
 import 'package:shopme_mobile/blocs/base_bloc.dart';
-import 'package:shopme_mobile/data/models/remote/category/category.dart';
+import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
 
 abstract class CategoryState extends BaseState {}
 

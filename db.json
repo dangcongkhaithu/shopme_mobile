@@ -6,7 +6,7 @@
       "alias": "alias 1",
       "image": "image1.png",
       "enable": true,
-      "has_children" : true
+      "has_children": true
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "alias": "alias 1",
       "image": "image2.png",
       "enable": true,
-      "has_children" : false
+      "has_children": false
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "alias": "alias 1",
       "image": "image1.png",
       "enable": true,
-      "has_children" : true
+      "has_children": true
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "alias": "alias 1",
       "image": "image2.png",
       "enable": true,
-      "has_children" : false
+      "has_children": false
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "alias": "alias 1",
       "image": "image1.png",
       "enable": true,
-      "has_children" : true
+      "has_children": true
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "alias": "alias 1",
       "image": "image2.png",
       "enable": true,
-      "has_children" : false
+      "has_children": false
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "alias": "alias 1",
       "image": "image1.png",
       "enable": true,
-      "has_children" : true
+      "has_children": true
     },
     {
       "id": 8,
@@ -62,7 +62,7 @@
       "alias": "alias 1",
       "image": "image2.png",
       "enable": true,
-      "has_children" : false
+      "has_children": false
     },
     {
       "id": 9,
@@ -70,7 +70,7 @@
       "alias": "alias 1",
       "image": "image1.png",
       "enable": true,
-      "has_children" : true
+      "has_children": true
     },
     {
       "id": 10,
@@ -78,10 +78,261 @@
       "alias": "alias 1",
       "image": "image2.png",
       "enable": true,
-      "has_children" : false
+      "has_children": false
     }
   ],
-  "product" : [
-
+  "product": [
+    {
+      "id": 1,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Iphone 11 Pro max",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 20000000,
+      "price": 19899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 3,
+      "name": "Macbook pro 2015",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 123512736,
+      "price": 989349000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 4,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 6,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 7,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 8,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 9,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 10,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 11,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    },
+    {
+      "id": 12,
+      "name": "Xiaomi redmi 4X",
+      "alias": "",
+      "short_description": "Gồm 2 phiên bản: MRXJ2 (hộp sạc không dây) và MV7N2 (hộp sạc thường) Hàng chính hãng - Mã hàng VN/A Phiên bản nâng cấp đáng giá Thời gian sạc đầy nhanh hơn Thời lượng pin cải thiện, lên đến 24 tiếng Tương thích tối đa các thiết bị của Apple",
+      "full_description": "Theo báo cáo từ công ty phân tích Barclays, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless sẽ có khả năng chống ồn, xử lý âm thanh bên ngoài tốt hơn so với tai nghe AirPods đời đầu khi khả năng chống ồn còn nhiều hạn chế. Apple sử dụng công nghệ chống ồn vật lý, khác với chống ồn điện từ như những tai nghe headphone. Với khả năng chống ồn tốt hơn này, Tai Nghe Bluetooth Nhét Tai Apple AirPods 2 True Wireless hứa hẹn sẽ đem lại chất âm tuyệt vời.\n\n",
+      "created_time": "",
+      "updated_time": "",
+      "enable": true,
+      "in_stock": false,
+      "cost": 10000000,
+      "price": 9899000,
+      "discount_percent": 20,
+      "length": 1,
+      "width": 2,
+      "height": 3,
+      "weight": 4,
+      "main_image": "image.png",
+      "category_id": 1,
+      "brand_id": 1
+    }
   ]
 }

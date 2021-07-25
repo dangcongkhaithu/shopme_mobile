@@ -5,10 +5,17 @@
     "account": "Account",
     "read_more": "Read more"
   },
-  "error" : {
-    "something_went_wrong" : "Something went wrong"
+  "error": {
+    "something_went_wrong": "Something went wrong"
   },
   "category": {
     "category": "Category"
+  },
+  "product": {
+    "product": "Product"
+  },
+  "account": {
+    "sign_in": "SIGN IN",
+    "sign_up": "SIGN UP"
   }
 }
