@@ -9,7 +9,10 @@ abstract class ProductDatasource {
 }
 
 class ProductDatasourceImpl extends ProductDatasource {
-  final _client = getIt<RestClient>();
+  final RestClient _client;
+
+  ProductDatasourceImpl() : _client = getIt<RestClient>();
+
   Logger _logger = Logger();
 
   @override
@@ -27,5 +30,4 @@ class ProductDatasourceImpl extends ProductDatasource {
 
     return products;
   }
-
 }

@@ -185,6 +185,8 @@ abstract class _$LocalDatabase extends GeneratedDatabase {
   _$LocalDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $RecentSearchEntityTable recentSearchEntity =
       $RecentSearchEntityTable(this);
+  late final RecentSearchDao recentSearchDao =
+      RecentSearchDao(this as LocalDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

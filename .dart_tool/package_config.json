@@ -21,7 +21,7 @@
     },
     {
       "name": "args",
-      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.1.1",
+      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -159,7 +159,7 @@
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/dart_style-2.0.2",
+      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/dart_style-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -668,7 +668,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-07-25T06:33:55.432371Z",
+  "generated": "2021-07-26T14:44:25.196670Z",
   "generator": "pub",
-  "generatorVersion": "2.13.0"
+  "generatorVersion": "2.13.4"
 }

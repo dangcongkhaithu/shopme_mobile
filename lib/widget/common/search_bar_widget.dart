@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_bloc.dart';
+import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
+import 'package:shopme_mobile/data/local/models/recent_search.dart';
+import 'package:shopme_mobile/di/injection.dart';
 
 class SearchBarWidget extends StatefulWidget {
   @override
@@ -9,7 +13,33 @@ class SearchBarWidget extends StatefulWidget {
 }
 
 class SearchBarWidgetState extends State<SearchBarWidget> {
-  final List<String> recentSearch = ["xiaomi redmi 4x", "Iphone", "Laptop dell", "Macbook pro"];
+  late RecentSearchBloc _recentSearchBloc;
+  late ValueNotifier<List<RecentSearch>> _recentSearchNotifier;
+
+  @override
+  void initState() {
+    _recentSearchBloc = getIt<RecentSearchBloc>();
+    _recentSearchNotifier = ValueNotifier([]);
+
+    _recentSearchBloc.getAll();
+
+    _recentSearchBloc.stream.listen((event) {
+      if (event is GetRecentSearchSuccessState) {
+        _recentSearchNotifier.value = event.listRecentSearch;
+      } else if (event is FilterRecentSearchSuccessState) {
+        _recentSearchNotifier.value = event.listRecentSearch;
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _recentSearchBloc.close();
+    _recentSearchNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +52,10 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
       transition: CircularFloatingSearchBarTransition(),
       physics: const BouncingScrollPhysics(),
       onQueryChanged: (query) {
-        // Call your model, bloc, controller here.
+        _recentSearchBloc.filter(query);
+      },
+      onSubmitted: (query) {
+        _recentSearchBloc.saveOne(query);
       },
       actions: [
         FloatingSearchBarAction.searchToClear(
@@ -38,25 +71,30 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
           ),
         ),
       ],
-      builder: (context, transition) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            color: Colors.white,
-            elevation: 4.0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: recentSearch.map((e) {
-                return _buildRecentSearchItem(e);
-              }).toList(),
-            ),
-          ),
+      builder: (context, _) {
+        return ValueListenableBuilder<List<RecentSearch>>(
+          valueListenable: _recentSearchNotifier,
+          builder: (_, recentSearch, __) {
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Material(
+                color: Colors.white,
+                elevation: 4.0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: recentSearch.map((e) {
+                    return _buildRecentSearchItem(e);
+                  }).toList(),
+                ),
+              ),
+            );
+          },
         );
       },
     );
   }
 
-  Widget _buildRecentSearchItem(String item) {
+  Widget _buildRecentSearchItem(RecentSearch item) {
     return TextButton(
       onPressed: () {},
       child: Container(
@@ -66,7 +104,7 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                item,
+                item.content,
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -77,7 +115,10 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
                 Icons.delete_forever,
                 color: Colors.grey,
               ),
-              onPressed: () {},
+              onPressed: () {
+                _recentSearchBloc.deleteOne(item.id);
+                _recentSearchBloc.getAll();
+              },
             ),
           ],
         ),

@@ -53,7 +53,6 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: widget.appBar,
       key: _controller._scaffoldKey,
       endDrawer: widget.endDrawer,

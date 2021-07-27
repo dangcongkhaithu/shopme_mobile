@@ -7,10 +7,12 @@ abstract class CategoryRepository {
 }
 
 class CategoryRepositoryImpl extends CategoryRepository {
-  final categoryDatasource = getIt<CategoryDatasource>();
+  final CategoryDatasource _categoryDatasource;
+
+  CategoryRepositoryImpl() : _categoryDatasource = getIt<CategoryDatasource>();
 
   @override
   Future<List<Category>> getAllCategories() {
-    return categoryDatasource.getAllCategories();
+    return _categoryDatasource.getAllCategories();
   }
 }

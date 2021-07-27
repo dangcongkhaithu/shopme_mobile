@@ -7,7 +7,9 @@ abstract class ProductRepository {
 }
 
 class ProductRepositoryImpl extends ProductRepository {
-  final _productDatasource = getIt<ProductDatasource>();
+  final ProductDatasource _productDatasource;
+
+  ProductRepositoryImpl() : _productDatasource = getIt<ProductDatasource>();
 
   @override
   Future<List<Product>> getProducts() {

@@ -16,6 +16,8 @@
   },
   "account": {
     "sign_in": "SIGN IN",
-    "sign_up": "SIGN UP"
+    "sign_up": "SIGN UP",
+    "new_user" : "New user ?",
+    "create_account" : "Create new account"
   }
 }

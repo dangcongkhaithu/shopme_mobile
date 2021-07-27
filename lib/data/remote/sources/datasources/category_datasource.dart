@@ -9,7 +9,10 @@ abstract class CategoryDatasource {
 }
 
 class CategoryDatasourceImpl extends CategoryDatasource {
-  final _client = getIt<RestClient>();
+  final RestClient _client;
+
+  CategoryDatasourceImpl() : _client = getIt<RestClient>();
+
   Logger _logger = Logger();
 
   @override

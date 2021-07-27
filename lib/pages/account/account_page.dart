@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
+import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
@@ -15,7 +16,7 @@ class AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return BasePage(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
+        preferredSize: Size.fromHeight(140),
         child: Container(
           color: AppColors.mainColor,
           child: _buildAppBar(),
@@ -108,7 +109,9 @@ class AccountPageState extends State<AccountPage> {
     return SizedBox(
       width: 100,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(SignInPage.getRoute());
+        },
         style: TextButton.styleFrom(
           backgroundColor: Colors.white,
         ),
