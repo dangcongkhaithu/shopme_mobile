@@ -27,7 +27,6 @@ class HomepageState extends State<HomePage> {
     _productsNotifier = ValueNotifier([]);
 
     _productBloc.stream.listen((event) {
-      print(event);
       if (event is GetProductSuccessState) {
         _productsNotifier.value = event.products;
       }

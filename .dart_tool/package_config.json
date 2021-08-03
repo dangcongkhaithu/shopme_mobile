@@ -248,6 +248,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "fluttertoast",
+      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "frontend_server_client",
       "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/frontend_server_client-2.1.0",
       "packageUri": "lib/",
@@ -668,7 +674,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-07-26T14:44:25.196670Z",
+  "generated": "2021-08-04T15:26:13.715831Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

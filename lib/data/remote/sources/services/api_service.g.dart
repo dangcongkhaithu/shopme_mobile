@@ -23,7 +23,7 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<Category>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/category',
+                .compose(_dio.options, 'http://localhost:3000/category',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
@@ -40,12 +40,46 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<Product>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/product',
+                .compose(_dio.options, 'http://localhost:3000/product',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => Product.fromJson(i as Map<String, dynamic>))
         .toList();
+    return value;
+  }
+
+  @override
+  Future<ResponseSignUp> signUp(request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseSignUp>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options,
+                    'https://freeapi.code4func.com/api/v1/user/sign-up',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseSignUp.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseSignIn> signIn(request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseSignIn>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options,
+                    'https://freeapi.code4func.com/api/v1/user/sign-in',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseSignIn.fromJson(_result.data!);
     return value;
   }
 

@@ -16,6 +16,8 @@
   },
   "account": {
     "sign_in": "ĐĂNG NHẬP",
-    "sign_up": "ĐĂNG KÝ"
+    "sign_up": "ĐĂNG KÝ",
+    "new_user": "Bạn chưa có tài khoản ?",
+    "create_account": "Đăng ký ngay"
   }
 }

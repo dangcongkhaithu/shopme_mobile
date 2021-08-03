@@ -6,8 +6,21 @@ import 'package:shopme_mobile/pages/home/home_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 
 class CommonPage extends StatefulWidget {
+  final int selectedPage;
+
+  const CommonPage({
+    Key? key,
+    this.selectedPage = 0,
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => CommonPageState();
+
+  static MaterialPageRoute getRoute({int selectedPage = 0}) {
+    return MaterialPageRoute(
+      builder: (context) => CommonPage(selectedPage: selectedPage),
+    );
+  }
 }
 
 class CommonPageState extends State<CommonPage> {
@@ -17,7 +30,7 @@ class CommonPageState extends State<CommonPage> {
   @override
   void initState() {
     super.initState();
-    _selectedIndexNotifier = ValueNotifier(0);
+    _selectedIndexNotifier = ValueNotifier(widget.selectedPage);
     _pages = [HomePage(), CategoryPage(), AccountPage()];
   }
 

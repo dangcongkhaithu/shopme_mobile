@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
+import 'package:shopme_mobile/pages/sign_up/sign_up_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
@@ -129,7 +130,9 @@ class AccountPageState extends State<AccountPage> {
     return SizedBox(
       width: 80,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(SignUpPage.getRoute());
+        },
         style: TextButton.styleFrom(
           side: BorderSide(color: Colors.white, width: 2),
         ),

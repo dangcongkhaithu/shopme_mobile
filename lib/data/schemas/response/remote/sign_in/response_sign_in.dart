@@ -1,0 +1,21 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:shopme_mobile/data/remote/models/remote/user/user.dart';
+
+part 'response_sign_in.g.dart';
+
+@JsonSerializable()
+class ResponseSignIn {
+  final int code;
+
+  @JsonKey(name: "data")
+  final User user;
+
+  ResponseSignIn({
+    required this.code,
+    required this.user,
+  });
+
+  factory ResponseSignIn.fromJson(Map<String, dynamic> json) => _$ResponseSignInFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResponseSignInToJson(this);
+}

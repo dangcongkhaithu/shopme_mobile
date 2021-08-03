@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/pages/application/aplication.dart';
 
 import 'core/common/constants/localization_constant.dart';
@@ -13,6 +14,7 @@ Future<void> mainCommon() async {
   await Future.wait([
     EasyLocalization.ensureInitialized(),
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]),
+    SharedPref.ensureInitialized(),
   ]);
 
   runApp(
