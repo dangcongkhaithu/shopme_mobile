@@ -12,6 +12,7 @@ class Category {
 
   @JsonKey(name: 'has_children')
   bool hasChildren;
+  List<Category> children;
 
   Category({
     required this.id,
@@ -20,6 +21,7 @@ class Category {
     required this.image,
     required this.enable,
     required this.hasChildren,
+    required this.children,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);

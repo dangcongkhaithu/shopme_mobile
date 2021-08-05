@@ -48,7 +48,7 @@ class HomepageState extends State<HomePage> {
   }
 
   Widget _buildPage() {
-    final double marginTop = MediaQuery.of(context).size.height * 0.15;
+    final double marginTop = 150;
     return Stack(
       //fit: StackFit.expand,
       children: [
@@ -70,7 +70,7 @@ class HomepageState extends State<HomePage> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10),
-          child: _buildSearchField(),
+          child: SearchBarWidget(),
         ),
       ],
     );
@@ -100,9 +100,5 @@ class HomepageState extends State<HomePage> {
         },
       ),
     );
-  }
-
-  Widget _buildSearchField() {
-    return SearchBarWidget();
   }
 }

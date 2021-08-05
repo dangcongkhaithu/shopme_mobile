@@ -188,6 +188,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "expandable_page_view",
+      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/expandable_page_view-1.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0",
       "packageUri": "lib/",
@@ -674,7 +680,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-08-04T15:26:13.715831Z",
+  "generated": "2021-08-05T10:20:24.924235Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

@@ -8,6 +8,7 @@ class BasePage extends StatefulWidget {
   final BasePageController? controller;
   final bool resizeToAvoidBottomInset;
   final PreferredSizeWidget? appBar;
+  final Color color;
 
   const BasePage({
     Key? key,
@@ -16,6 +17,7 @@ class BasePage extends StatefulWidget {
     this.controller,
     this.resizeToAvoidBottomInset = false,
     this.appBar,
+    this.color = AppColors.white,
   }) : super(key: key);
 
   @override
@@ -53,6 +55,7 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: widget.color,
       appBar: widget.appBar,
       key: _controller._scaffoldKey,
       endDrawer: widget.endDrawer,
