@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
+import 'package:shopme_mobile/pages/product_detail/product_detail_page.dart';
 
 class ProductWidget extends StatefulWidget {
   final List<Product> products;
@@ -72,17 +73,20 @@ class ProductWidgetState extends State<ProductWidget> {
   }
 
   Widget _buildProductItem(int index, List<Product> products) {
-    return Card(
-      child: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 150,
-            color: Colors.blue,
-          ),
-          const SizedBox(height: 10),
-          Text(products[index].name)
-        ],
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(ProductDetailPage.getRoute(product: products[index])),
+      child: Card(
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+              color: Colors.blue,
+            ),
+            const SizedBox(height: 10),
+            Text(products[index].name)
+          ],
+        ),
       ),
     );
   }

@@ -12,5 +12,5 @@ class SharedPref {
     sharePref.setString(SharedPrefKey.TOKEN, token);
   }
 
-  String? get token => sharePref.getString(SharedPrefKey.TOKEN);
+  String get token => sharePref.getString(SharedPrefKey.TOKEN) ?? "";
 }

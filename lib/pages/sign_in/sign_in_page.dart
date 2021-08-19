@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shopme_mobile/blocs/base_bloc.dart';
+import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_bloc.dart';
+import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_state.dart';
 import 'package:shopme_mobile/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:shopme_mobile/blocs/sign_in_bloc/sign_in_state.dart';
+import 'package:shopme_mobile/blocs/update_user_profile_bloc/update_user_profile_bloc.dart';
+import 'package:shopme_mobile/blocs/update_user_profile_bloc/update_user_profile_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
+import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/sign_in/request_sign_in.dart';
+import 'package:shopme_mobile/data/schemas/request/remote/update_user_profile/request_update_user_profile.dart';
 import 'package:shopme_mobile/di/injection.dart';
-import 'package:shopme_mobile/pages/account/account_signed_in_page.dart';
 import 'package:shopme_mobile/pages/common/common_page.dart';
 import 'package:shopme_mobile/pages/sign_up/sign_up_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
@@ -40,22 +45,39 @@ class SignInPage extends StatefulWidget {
 class SignInPageState extends State<SignInPage> {
   late ScrollController _scrollController;
   late SignInBloc _signInBloc;
+  late GetUserProfileBloc _getUserProfileBloc;
+  late SharedPref _sharedPref;
   String email = "";
   String password = "";
+  String token = "";
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _signInBloc = getIt<SignInBloc>();
+    _getUserProfileBloc = getIt<GetUserProfileBloc>();
+    _sharedPref = getIt<SharedPref>();
     email = widget.email;
     password = widget.password;
 
     _signInBloc.stream.listen((event) {
       if (event is SignInSuccessState) {
-        Navigator.of(context).push(CommonPage.getRoute(selectedPage: 2));
+        token = event.response.token;
+        _getUserProfileBloc.getUserProfile(token);
       } else if (event is ErrorState) {
         Fluttertoast.showToast(msg: TranslateHelper.somethingWentWrong);
+      }
+    });
+
+    _getUserProfileBloc.stream.listen((event) {
+      if (event is GetUserProfileSuccessState) {
+        if (event.userProfile.user.role == "user") {
+          _sharedPref.storeToken(token);
+          Navigator.of(context).push(CommonPage.getRoute(selectedPage: 2));
+        } else {
+          print("wrong Role");
+        }
       }
     });
   }
@@ -64,6 +86,7 @@ class SignInPageState extends State<SignInPage> {
   void dispose() {
     _scrollController.dispose();
     _signInBloc.close();
+    _getUserProfileBloc.close();
     super.dispose();
   }
 

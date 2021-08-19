@@ -26,12 +26,9 @@ class SignUpPage extends StatefulWidget {
 class SignUpPageState extends State<SignUpPage> {
   late ScrollController _scrollController;
   late SignUpBloc _signUpBloc;
-  String fullName = "";
   String email = "";
-  String phone = "";
   String password = "";
   String confirmPassword = "";
-  String address = "";
 
   @override
   void initState() {
@@ -131,13 +128,10 @@ class SignUpPageState extends State<SignUpPage> {
   Widget _buildForm() {
     return Column(
       children: [
-        _buildFormItem("Full Name", "Enter your full name", (value) => fullName = value),
         _buildFormItem("Email", "Enter valid mail id as abc@gmail.com", (value) => email = value),
-        _buildFormItem("Phone", "Enter your phone number", (value) => phone = value),
         _buildFormItem("Password", "Enter your password", (value) => password = value, obscureText: true),
         _buildFormItem("Confirm Password", "Confirm your password", (value) => confirmPassword = value,
             obscureText: true),
-        _buildFormItem("Address", "Enter your address", (value) => address = value),
       ],
     );
   }
@@ -167,11 +161,8 @@ class SignUpPageState extends State<SignUpPage> {
       child: TextButton(
         onPressed: () {
           RequestSignUp request = RequestSignUp(
-            fullName: fullName,
             email: email,
-            phone: phone,
             password: password,
-            address: address,
           );
           _signUpBloc.signUp(request);
         },

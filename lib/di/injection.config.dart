@@ -1,9 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_bloc.dart';
+import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_bloc.dart';
 import 'package:shopme_mobile/blocs/product_bloc/product_bloc.dart';
 import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_bloc.dart';
 import 'package:shopme_mobile/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:shopme_mobile/blocs/sign_up_bloc/sign_up_bloc.dart';
+import 'package:shopme_mobile/blocs/update_user_profile_bloc/update_user_profile_bloc.dart';
 import 'package:shopme_mobile/data/local/database/local_database.dart';
 import 'package:shopme_mobile/data/local/datasources/recent_search_datasource.dart';
 import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
@@ -49,4 +51,6 @@ void registerBloC(GetIt getIt) {
   getIt.registerFactory<RecentSearchBloc>(() => RecentSearchBloc());
   getIt.registerFactory<SignUpBloc>(() => SignUpBloc());
   getIt.registerFactory<SignInBloc>(() => SignInBloc());
+  getIt.registerFactory<GetUserProfileBloc>(() => GetUserProfileBloc());
+  getIt.registerFactory<UpdateUserProfileBloc>(() => UpdateUserProfileBloc());
 }

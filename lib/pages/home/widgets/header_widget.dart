@@ -27,8 +27,6 @@ class HeaderWidgetState extends State<HeaderWidget> {
               activateIndicatorColor: Colors.black,
               animationPageCurve: Curves.bounceInOut,
               unActivatedIndicatorColor: Colors.grey,
-              stopAtEnd: true,
-              autoScroll: true,
               items: [
                 Container(
                   color: Colors.blue,

@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 class HomepageState extends State<HomePage> {
   late ProductBloc _productBloc;
   late ValueNotifier<List<Product>> _productsNotifier;
+  late ScrollController _scrollController;
 
   @override
   void initState() {

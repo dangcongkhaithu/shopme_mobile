@@ -4,18 +4,12 @@ part 'request_sign_up.g.dart';
 
 @JsonSerializable()
 class RequestSignUp {
-  String fullName;
-  String email;
-  String phone;
-  String password;
-  String address;
+  final String email;
+  final String password;
 
   RequestSignUp({
-    required this.fullName,
     required this.email,
-    required this.phone,
     required this.password,
-    required this.address,
   });
 
 

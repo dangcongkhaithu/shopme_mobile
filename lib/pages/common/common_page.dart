@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
+import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/account/account_page.dart';
+import 'package:shopme_mobile/pages/account/account_page_signed_out_page.dart';
+import 'package:shopme_mobile/pages/account/account_signed_in_page.dart';
 import 'package:shopme_mobile/pages/category/category_page.dart';
 import 'package:shopme_mobile/pages/home/home_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
@@ -26,12 +30,23 @@ class CommonPage extends StatefulWidget {
 class CommonPageState extends State<CommonPage> {
   late ValueNotifier<int> _selectedIndexNotifier;
   List<Widget> _pages = [];
+  late SharedPref _sharedPref;
 
   @override
   void initState() {
     super.initState();
     _selectedIndexNotifier = ValueNotifier(widget.selectedPage);
-    _pages = [HomePage(), CategoryPage(), AccountPage()];
+    _sharedPref = getIt<SharedPref>();
+
+    _pages = [HomePage(), CategoryPage()];
+
+    print(_sharedPref.token);
+
+    if(_sharedPref.token != "") {
+      _pages.add(AccountSignedInPage(token: _sharedPref.token));
+    } else {
+      _pages.add(AccountPageSignedOutPage());
+    }
   }
 
   @override

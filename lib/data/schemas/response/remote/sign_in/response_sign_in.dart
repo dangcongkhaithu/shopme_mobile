@@ -5,14 +5,12 @@ part 'response_sign_in.g.dart';
 
 @JsonSerializable()
 class ResponseSignIn {
-  final int code;
-
-  @JsonKey(name: "data")
-  final User user;
+  final String status;
+  final String token;
 
   ResponseSignIn({
-    required this.code,
-    required this.user,
+    required this.status,
+    required this.token,
   });
 
   factory ResponseSignIn.fromJson(Map<String, dynamic> json) => _$ResponseSignInFromJson(json);

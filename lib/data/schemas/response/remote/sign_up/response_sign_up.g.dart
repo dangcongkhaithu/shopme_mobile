@@ -8,13 +8,13 @@ part of 'response_sign_up.dart';
 
 ResponseSignUp _$ResponseSignUpFromJson(Map<String, dynamic> json) {
   return ResponseSignUp(
-    code: json['code'] as int,
-    user: User.fromJson(json['data'] as Map<String, dynamic>),
+    message: json['message'] as String,
+    status: json['status'] as String,
   );
 }
 
 Map<String, dynamic> _$ResponseSignUpToJson(ResponseSignUp instance) =>
     <String, dynamic>{
-      'code': instance.code,
-      'data': instance.user,
+      'message': instance.message,
+      'status': instance.status,
     };
