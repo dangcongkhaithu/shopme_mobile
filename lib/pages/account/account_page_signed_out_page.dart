@@ -39,16 +39,6 @@ class AccountPageSignedOutPageState extends State<AccountPageSignedOutPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CircularButton(
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-                size: 30,
-              ),
-              onPressed: () {
-                print("Navigate To Cart");
-              },
-            ),
             const SizedBox(width: 10),
             CircularButton(
               icon: const Icon(

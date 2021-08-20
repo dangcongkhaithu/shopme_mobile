@@ -18,7 +18,7 @@ class HeaderWidgetState extends State<HeaderWidget> {
     return Column(
       children: [
         Container(
-            height: _size.height * 0.2,
+            height: 200,
             width: _size.width,
             child: Carousel(
               indicatorBarColor: Colors.black.withOpacity(0),
@@ -28,18 +28,22 @@ class HeaderWidgetState extends State<HeaderWidget> {
               animationPageCurve: Curves.bounceInOut,
               unActivatedIndicatorColor: Colors.grey,
               items: [
-                Container(
-                  color: Colors.blue,
-                ),
-                Container(
-                  color: Colors.green,
-                ),
-                Container(
-                  color: Colors.yellow,
-                )
+                _buildImage("assets/images/image_slide_1.png"),
+                _buildImage("assets/images/image_slide_2.jpeg"),
+                _buildImage("assets/images/image_slide_3.jpeg"),
               ],
             ))
       ],
+    );
+  }
+
+  Widget _buildImage(String path) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(path),
+        )
+      ),
     );
   }
 }

@@ -58,7 +58,7 @@ class ProductWidgetState extends State<ProductWidget> {
     if (widget.products.length != 0) {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 0.8,
+          childAspectRatio: 0.75,
           mainAxisSpacing: 20,
           crossAxisCount: 2,
         ),
@@ -98,6 +98,7 @@ class ProductWidgetState extends State<ProductWidget> {
               child: Text(
                 products[index].name,
                 overflow: TextOverflow.ellipsis,
+                maxLines: 2,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
@@ -110,7 +111,7 @@ class ProductWidgetState extends State<ProductWidget> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  products[index].price.toString(),
+                  products[index].price.toString() + " đ",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 18,

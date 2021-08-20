@@ -98,6 +98,11 @@ class ProductDetailPageState extends State<ProductDetailPage> {
         CustomScrollView(
           slivers: [
             _buildImages(),
+            SliverToBoxAdapter(
+              child: const SizedBox(
+                height: 20,
+              ),
+            ),
             _buildTitleProduct(),
           ],
         ),
@@ -139,13 +144,63 @@ class ProductDetailPageState extends State<ProductDetailPage> {
 
   Widget _buildImages() {
     return SliverToBoxAdapter(
-      child: HeaderWidget(),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(5),
+          image: DecorationImage(
+            image: NetworkImage(widget.product.imageUrl),
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildTitleProduct() {
     return SliverToBoxAdapter(
-      child: Center(child: Text(widget.product.name)),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              widget.product.name,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                widget.product.price.toString() + " đ",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              widget.product.description,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
     );
   }
 }

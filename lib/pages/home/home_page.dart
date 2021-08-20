@@ -63,7 +63,7 @@ class HomepageState extends State<HomePage> {
             _buildHeader(),
             SliverToBoxAdapter(child: const SizedBox(height: 10)),
             _buildCategory(),
-            SliverToBoxAdapter(child: const SizedBox(height: 10)),
+            SliverToBoxAdapter(child: const SizedBox(height: 30)),
             _buildProduct(),
           ],
         ),

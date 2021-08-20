@@ -11,18 +11,23 @@ import 'package:shopme_mobile/resources/app_colors.dart';
 
 class CommonPage extends StatefulWidget {
   final int selectedPage;
+  final int selectedCategoryPage;
 
   const CommonPage({
     Key? key,
     this.selectedPage = 0,
+    this.selectedCategoryPage = 0,
   }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CommonPageState();
 
-  static MaterialPageRoute getRoute({int selectedPage = 0}) {
+  static MaterialPageRoute getRoute({int selectedPage = 0, int selectedCategoryPage = 0}) {
     return MaterialPageRoute(
-      builder: (context) => CommonPage(selectedPage: selectedPage),
+      builder: (context) => CommonPage(
+        selectedPage: selectedPage,
+        selectedCategoryPage: selectedCategoryPage,
+      ),
     );
   }
 }
@@ -38,11 +43,11 @@ class CommonPageState extends State<CommonPage> {
     _selectedIndexNotifier = ValueNotifier(widget.selectedPage);
     _sharedPref = getIt<SharedPref>();
 
-    _pages = [HomePage(), CategoryPage()];
+    _pages = [HomePage(), CategoryPage(selectedCategoryIndex: widget.selectedCategoryPage)];
 
     print(_sharedPref.token);
 
-    if(_sharedPref.token != "") {
+    if (_sharedPref.token != "") {
       _pages.add(AccountSignedInPage(token: _sharedPref.token));
     } else {
       _pages.add(AccountPageSignedOutPage());

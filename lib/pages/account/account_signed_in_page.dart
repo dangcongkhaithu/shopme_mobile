@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_bloc.dart';
+import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_state.dart';
+import 'package:shopme_mobile/blocs/update_user_profile_bloc/update_user_profile_bloc.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
+import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
+import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profile.dart';
+import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/common/common_page.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 import 'package:shopme_mobile/pages/sign_up/sign_up_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
@@ -23,6 +31,17 @@ class AccountSignedInPage extends StatefulWidget {
 }
 
 class AccountSignedInPageState extends State<AccountSignedInPage> {
+  late GetUserProfileBloc _getUserProfileBloc;
+  late SharedPref _sharedPref;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserProfileBloc = getIt<GetUserProfileBloc>();
+    _sharedPref = getIt<SharedPref>();
+    _getUserProfileBloc.getUserProfile(widget.token);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BasePage(
@@ -69,7 +88,8 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
                 size: 30,
               ),
               onPressed: () {
-                print("Navigate To Setting");
+                _sharedPref.storeToken("");
+                Navigator.of(context).push(CommonPage.getRoute(selectedPage: 2));
               },
             ),
             const SizedBox(width: 20),
@@ -77,18 +97,13 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
         ),
         const SizedBox(height: 10),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildAvatar(),
-            Row(
-              children: [
-                _buildSignInButton(),
-                const SizedBox(width: 10),
-                _buildSignUpButton(),
-                const SizedBox(width: 20)
-              ],
-            )
+            const SizedBox(width: 30),
+            _buildNameUser(),
+            const SizedBox(width: 30),
           ],
         ),
         const SizedBox(height: 10)
@@ -118,27 +133,29 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
     );
   }
 
-  Widget _buildSignInButton() {
-    return SizedBox(
-      width: 100,
-      child: TextButton(
-        onPressed: () {
-          Navigator.of(context).push(SignInPage.getRoute());
-        },
-        style: TextButton.styleFrom(
-          backgroundColor: Colors.white,
-        ),
-        child: Text(
-          TranslateHelper.signIn,
-          style: TextStyle(
-            color: AppColors.mainColor,
-          ),
-        ),
-      ),
+  Widget _buildNameUser() {
+    _getUserProfileBloc.getUserProfile(widget.token);
+    return BlocBuilder(
+      bloc: _getUserProfileBloc,
+      builder: (context, state) {
+        if (state is GetUserProfileSuccessState) {
+          UserProfile userProfile = state.userProfile;
+          return Text(
+            userProfile.user.email,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AppColors.white,
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 
-  Widget _buildSignUpButton() {
+  Widget _buildSignOutButton() {
     return SizedBox(
       width: 80,
       child: TextButton(
@@ -149,7 +166,7 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
           side: BorderSide(color: Colors.white, width: 2),
         ),
         child: Text(
-          TranslateHelper.signUp,
+          "Sign Out",
           style: TextStyle(
             color: Colors.white,
           ),

@@ -6,6 +6,8 @@ import 'package:shopme_mobile/blocs/category_bloc/category_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/category/category_page.dart';
+import 'package:shopme_mobile/pages/common/common_page.dart';
 
 class CategoryWidget extends StatefulWidget {
   @override
@@ -104,29 +106,32 @@ class CategoryWidgetState extends State<CategoryWidget> {
   }
 
   Widget _buildCategoryItem(int index, List<Category> categories) {
-    return SizedBox(
-      child: Column(
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
-                  image: NetworkImage(categories[index].imageUrl),
-                  fit: BoxFit.cover,
-                )),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            categories[index].categoryName,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(CommonPage.getRoute(selectedPage: 1, selectedCategoryPage: index)),
+      child: SizedBox(
+        child: Column(
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                    image: NetworkImage(categories[index].imageUrl),
+                    fit: BoxFit.cover,
+                  )),
             ),
-          ),
-        ],
+            const SizedBox(height: 5),
+            Text(
+              categories[index].categoryName,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

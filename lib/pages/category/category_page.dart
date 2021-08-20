@@ -1,5 +1,6 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_bloc.dart';
@@ -7,13 +8,27 @@ import 'package:shopme_mobile/blocs/category_bloc/category_state.dart';
 import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/product_detail/product_detail_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/common/search_bar_widget.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
 class CategoryPage extends StatefulWidget {
+  final int selectedCategoryIndex;
+
+  const CategoryPage({
+    Key? key,
+    this.selectedCategoryIndex = 0,
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => CategoryPageState();
+
+  static MaterialPageRoute getRoute({int selectedCategoryIndex = 0}) {
+    return MaterialPageRoute(
+      builder: (context) => CategoryPage(selectedCategoryIndex: selectedCategoryIndex),
+    );
+  }
 }
 
 class CategoryPageState extends State<CategoryPage> {
@@ -27,8 +42,7 @@ class CategoryPageState extends State<CategoryPage> {
     super.initState();
     _getCategoriesBloc = getIt<CategoryBloc>();
     _getCategoriesBloc.getAllCategories();
-
-    _selectedNotifier = ValueNotifier(0);
+    _selectedNotifier = ValueNotifier(widget.selectedCategoryIndex);
     _pageController = PageController();
   }
 
@@ -129,8 +143,7 @@ class CategoryPageState extends State<CategoryPage> {
                             image: DecorationImage(
                               image: NetworkImage(categories[index].imageUrl),
                               fit: BoxFit.cover,
-                            )
-                        ),
+                            )),
                       ),
                       const SizedBox(height: 10),
                       Text(categories[index].categoryName)
@@ -173,8 +186,7 @@ class CategoryPageState extends State<CategoryPage> {
                               image: DecorationImage(
                                 image: NetworkImage(categories[index].imageUrl),
                                 fit: BoxFit.cover,
-                              )
-                          ),
+                              )),
                         ),
                         const SizedBox(height: 10),
                         Text(categories[index].categoryName)
@@ -242,33 +254,39 @@ class CategoryPageState extends State<CategoryPage> {
   }
 
   Widget _buildChildItem(int index, List<Product> products) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //TODO - replace by image
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(ProductDetailPage.getRoute(product: products[index])),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
                   image: NetworkImage(products[index].imageUrl),
                   fit: BoxFit.contain,
-                )),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(products[index].name,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 15,
-            ),),
-          )
-        ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                products[index].name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
