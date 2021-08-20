@@ -55,7 +55,8 @@ class CategoryWidgetState extends State<CategoryWidget> {
           child: Text(
             TranslateHelper.category,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
@@ -110,13 +111,21 @@ class CategoryWidgetState extends State<CategoryWidget> {
             width: 60,
             height: 60,
             decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.blue,
-            ),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(
+                  image: NetworkImage(categories[index].imageUrl),
+                  fit: BoxFit.cover,
+                )),
           ),
           const SizedBox(height: 5),
-          Text(categories[index].name),
+          Text(
+            categories[index].categoryName,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );

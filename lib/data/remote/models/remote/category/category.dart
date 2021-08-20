@@ -1,27 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 
 part 'category.g.dart';
 
 @JsonSerializable()
 class Category {
   final int id;
-  final String name;
-  final String alias;
-  final String image;
-  final bool enable;
-
-  @JsonKey(name: 'has_children')
-  bool hasChildren;
-  List<Category> children;
+  final String categoryName;
+  final String description;
+  final String imageUrl;
+  List<Product> products;
 
   Category({
     required this.id,
-    required this.name,
-    required this.alias,
-    required this.image,
-    required this.enable,
-    required this.hasChildren,
-    required this.children,
+    required this.categoryName,
+    required this.description,
+    required this.imageUrl,
+    required this.products
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);

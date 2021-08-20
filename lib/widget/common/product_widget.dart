@@ -44,7 +44,8 @@ class ProductWidgetState extends State<ProductWidget> {
           child: Text(
             TranslateHelper.product,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
@@ -57,6 +58,8 @@ class ProductWidgetState extends State<ProductWidget> {
     if (widget.products.length != 0) {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 0.8,
+          mainAxisSpacing: 20,
           crossAxisCount: 2,
         ),
         physics: const NeverScrollableScrollPhysics(),
@@ -80,11 +83,43 @@ class ProductWidgetState extends State<ProductWidget> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 150,
-              color: Colors.blue,
+              height: 180,
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                    image: NetworkImage(products[index].imageUrl),
+                    fit: BoxFit.contain,
+                  )),
             ),
             const SizedBox(height: 10),
-            Text(products[index].name)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                products[index].name,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  products[index].price.toString(),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
           ],
         ),
       ),

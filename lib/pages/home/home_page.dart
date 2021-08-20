@@ -27,8 +27,11 @@ class HomepageState extends State<HomePage> {
     _productBloc = getIt<ProductBloc>();
     _productsNotifier = ValueNotifier([]);
 
+    _productBloc.getProducts();
+
     _productBloc.stream.listen((event) {
       if (event is GetProductSuccessState) {
+        print(event.products[0].name);
         _productsNotifier.value = event.products;
       }
     });
@@ -90,7 +93,6 @@ class HomepageState extends State<HomePage> {
   }
 
   Widget _buildProduct() {
-    _productBloc.getProducts();
     return SliverToBoxAdapter(
       child: ValueListenableBuilder<List<Product>>(
         valueListenable: _productsNotifier,

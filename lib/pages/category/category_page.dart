@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_bloc.dart';
 import 'package:shopme_mobile/blocs/category_bloc/category_state.dart';
 import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
+import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/common/search_bar_widget.dart';
@@ -89,12 +90,7 @@ class CategoryPageState extends State<CategoryPage> {
           bloc: _getCategoriesBloc,
           builder: (_, state) {
             if (state is GetCategorySuccessState) {
-              List<Category> categories = [];
-              state.categories.forEach((element) {
-                if (element.hasChildren) {
-                  categories.add(element);
-                }
-              });
+              List<Category> categories = state.categories;
               return ListView.builder(
                 itemCount: categories.length,
                 itemBuilder: (_, index) {
@@ -125,12 +121,19 @@ class CategoryPageState extends State<CategoryPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 30,
-                        height: 50,
-                        color: Colors.blue,
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(5),
+                            image: DecorationImage(
+                              image: NetworkImage(categories[index].imageUrl),
+                              fit: BoxFit.cover,
+                            )
+                        ),
                       ),
                       const SizedBox(height: 10),
-                      Text(categories[index].name)
+                      Text(categories[index].categoryName)
                     ],
                   ),
                 ),
@@ -162,12 +165,19 @@ class CategoryPageState extends State<CategoryPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 30,
-                          height: 50,
-                          color: Colors.blue,
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                image: NetworkImage(categories[index].imageUrl),
+                                fit: BoxFit.cover,
+                              )
+                          ),
                         ),
                         const SizedBox(height: 10),
-                        Text(categories[index].name)
+                        Text(categories[index].categoryName)
                       ],
                     ),
                   ),
@@ -195,12 +205,7 @@ class CategoryPageState extends State<CategoryPage> {
         bloc: _getCategoriesBloc,
         builder: (_, state) {
           if (state is GetCategorySuccessState) {
-            List<Category> categories = [];
-            state.categories.forEach((element) {
-              if (element.hasChildren) {
-                categories.add(element);
-              }
-            });
+            List<Category> categories = state.categories;
             return PageView.builder(
               controller: _pageController,
               itemCount: categories.length,
@@ -218,25 +223,25 @@ class CategoryPageState extends State<CategoryPage> {
   }
 
   Widget _buildChildPage(int index, List<Category> categories) {
-    List<Category> childCategories = categories[index].children;
+    List<Product> products = categories[index].products;
     return Padding(
       padding: const EdgeInsets.only(left: 5.0),
       child: Card(
         color: AppColors.white,
         child: GridView.builder(
-          itemCount: childCategories.length,
+          itemCount: products.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
           itemBuilder: (_, index) {
-            return _buildChildItem(index, childCategories);
+            return _buildChildItem(index, products);
           },
         ),
       ),
     );
   }
 
-  Widget _buildChildItem(int index, List<Category> childCategories) {
+  Widget _buildChildItem(int index, List<Product> products) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -245,10 +250,24 @@ class CategoryPageState extends State<CategoryPage> {
           Container(
             width: 80,
             height: 80,
-            color: Colors.blue,
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(
+                  image: NetworkImage(products[index].imageUrl),
+                  fit: BoxFit.contain,
+                )),
           ),
           const SizedBox(height: 10),
-          Text(childCategories[index].name)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(products[index].name,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15,
+            ),),
+          )
         ],
       ),
     );

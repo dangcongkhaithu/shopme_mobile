@@ -23,7 +23,7 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<Category>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/category/',
+                .compose(_dio.options, '/child_category/',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!

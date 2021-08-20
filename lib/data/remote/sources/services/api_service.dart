@@ -17,7 +17,7 @@ abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
   //Category
-  @GET("/category/")
+  @GET("/child_category/")
   Future<List<Category>> getCategories();
 
   //Product
