@@ -8,6 +8,7 @@ import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/cart/request_cart.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/cart/cart_page.dart';
 import 'package:shopme_mobile/pages/common/common_page.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
@@ -112,7 +113,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.black,
                     size: 30,
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).push(CartPage.getRoute()),
                 ),
               ],
             ),

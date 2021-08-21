@@ -13,6 +13,7 @@ import 'package:shopme_mobile/data/remote/models/remote/cart_item/cart_item.dart
 import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profile.dart';
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
+import 'package:shopme_mobile/widget/common/edit_profile_dialog.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
 class CartPage extends StatefulWidget {
@@ -39,7 +40,6 @@ class CartPageState extends State<CartPage> {
     _cartBloc = getIt<CartBloc>();
     _sharedPref = getIt<SharedPref>();
     _totalCostNotifier = ValueNotifier(0);
-    _getUserProfileBloc.getUserProfile(_sharedPref.token);
 
     _cartBloc.stream.listen((event) {
       if (event is GetCartSuccessState) {
@@ -221,50 +221,88 @@ class CartPageState extends State<CartPage> {
   }
 
   Widget _buildUserInfo() {
+    _getUserProfileBloc.getUserProfile(_sharedPref.token);
     return SliverToBoxAdapter(
-      child: GestureDetector(
-        onTap: () {},
-        child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 150,
-            color: AppColors.white,
-            child: BlocBuilder(
-              bloc: _getUserProfileBloc,
-              builder: (_, state) {
-                if (state is GetUserProfileSuccessState) {
-                  UserProfile userProfile = state.userProfile;
-                  return Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.location_on),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  userProfile.firstname + " " + userProfile.lastname,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 150,
+          color: AppColors.white,
+          child: BlocBuilder(
+            bloc: _getUserProfileBloc,
+            builder: (_, state) {
+              if (state is GetUserProfileSuccessState) {
+                UserProfile userProfile = state.userProfile;
+                return GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => EditProfileDialog(
+                        userProfile: userProfile,
+                      ),
+                    ).then((_) {
+                      setState(() {});
+                    });
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 150,
+                    color: AppColors.white,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.location_on),
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    userProfile.firstname + " " + userProfile.lastname,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  userProfile.phone,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Icon(
+                                Icons.navigate_next_outlined,
+                              ),
+                            )
+                          ],
+                        ),
+                        Expanded(
+                          child: Align(
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                userProfile.phone,
+                                userProfile.address,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400,
@@ -272,41 +310,18 @@ class CartPageState extends State<CartPage> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Icon(
-                              Icons.navigate_next_outlined,
-                            ),
-                          )
-                        ],
-                      ),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              userProfile.address,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
                         ),
-                      ),
-                    ],
-                  );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            )),
-      ),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          )),
     );
   }
 

@@ -4,16 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_bloc.dart';
 import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_state.dart';
-import 'package:shopme_mobile/blocs/update_user_profile_bloc/update_user_profile_bloc.dart';
-import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profile.dart';
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/cart/cart_page.dart';
-import 'package:shopme_mobile/pages/profile/widgets/text_custom.dart';
 import 'package:shopme_mobile/pages/common/common_page.dart';
+import 'package:shopme_mobile/pages/profile/profile_page.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
-import 'package:shopme_mobile/pages/sign_up/sign_up_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
 
@@ -45,7 +42,7 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
     _getUserProfileBloc.getUserProfile(widget.token);
 
     _getUserProfileBloc.stream.listen((event) {
-      if(event is GetUserProfileSuccessState) {
+      if (event is GetUserProfileSuccessState) {
         _userProfile = event.userProfile;
       }
     });
@@ -60,6 +57,7 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
+      color: AppColors.background,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(140),
         child: Container(
@@ -76,12 +74,60 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
   }
 
   Widget _buildBody() {
-    return Center(
-      child: Text(widget.token),
+    return Column(
+      children: [
+        const SizedBox(height: 3),
+        _buildButtonNavigate(
+          "Profile",
+          () => Navigator.of(context).push(
+            ProfilePage.getRoute(),
+          ),
+        ),
+        const SizedBox(height: 1),
+        _buildButtonNavigate("Orders", () {}),
+        const SizedBox(height: 1),
+        _buildButtonNavigate("Wish List", () {}),
+        const SizedBox(height: 20),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: _buildButtonNavigate(
+            "Sign Out",
+            () {
+              _sharedPref.storeToken("");
+              Navigator.of(context).push(CommonPage.getRoute(selectedPage: 2));
+            },
+          ),
+        ),
+      ],
     );
   }
 
-
+  Widget _buildButtonNavigate(String text, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        color: AppColors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Icon(Icons.navigate_next),
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _buildAppBar() {
     return Column(
@@ -98,7 +144,7 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
                 size: 30,
               ),
               onPressed: () {
-                if(_sharedPref.token == "") {
+                if (_sharedPref.token == "") {
                   Navigator.of(context).push(SignInPage.getRoute());
                 } else {
                   Navigator.of(context).push(CartPage.getRoute());
@@ -112,10 +158,7 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
                 color: Colors.white,
                 size: 30,
               ),
-              onPressed: () {
-                _sharedPref.storeToken("");
-                Navigator.of(context).push(CommonPage.getRoute(selectedPage: 2));
-              },
+              onPressed: () {},
             ),
             const SizedBox(width: 20),
           ],
