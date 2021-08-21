@@ -47,6 +47,7 @@ class HomepageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
+      color: AppColors.background,
       child: _buildPage(),
     );
   }
@@ -61,9 +62,9 @@ class HomepageState extends State<HomePage> {
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: marginTop)),
             _buildHeader(),
-            SliverToBoxAdapter(child: const SizedBox(height: 10)),
+            SliverToBoxAdapter(child: const SizedBox(height: 5)),
             _buildCategory(),
-            SliverToBoxAdapter(child: const SizedBox(height: 30)),
+            SliverToBoxAdapter(child: const SizedBox(height: 10)),
             _buildProduct(),
           ],
         ),

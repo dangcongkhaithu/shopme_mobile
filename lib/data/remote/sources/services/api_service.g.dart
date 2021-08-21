@@ -112,6 +112,51 @@ class _RestClient implements RestClient {
     return value;
   }
 
+  @override
+  Future<ResponseBase> addToCart(token, request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'token': token};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseBase>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/cart/add',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseBase.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Cart> getCart(token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'token': token};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Cart>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/cart/',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Cart.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseBase> deleteCartItem(cartItemId, token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'token': token};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseBase>(Options(
+                method: 'DELETE', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/cart/delete/$cartItemId',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseBase.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

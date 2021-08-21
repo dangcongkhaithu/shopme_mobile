@@ -5,7 +5,10 @@ import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_bloc.dart';
 import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/local/models/recent_search.dart';
+import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/cart/cart_page.dart';
+import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 
 class SearchBarWidget extends StatefulWidget {
   @override
@@ -15,10 +18,12 @@ class SearchBarWidget extends StatefulWidget {
 class SearchBarWidgetState extends State<SearchBarWidget> {
   late RecentSearchBloc _recentSearchBloc;
   late ValueNotifier<List<RecentSearch>> _recentSearchNotifier;
+  late SharedPref _sharedPref;
 
   @override
   void initState() {
     _recentSearchBloc = getIt<RecentSearchBloc>();
+    _sharedPref = getIt<SharedPref>();
     _recentSearchNotifier = ValueNotifier([]);
 
     _recentSearchBloc.getAll();
@@ -66,7 +71,11 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
           child: CircularButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              print("Navigate To Cart");
+              if(_sharedPref.token == "") {
+                Navigator.of(context).push(SignInPage.getRoute());
+              } else {
+                Navigator.of(context).push(CartPage.getRoute());
+              }
             },
           ),
         ),

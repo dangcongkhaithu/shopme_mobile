@@ -66,7 +66,7 @@ class SignUpPageState extends State<SignUpPage> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          TranslateHelper.signIn,
+          TranslateHelper.signUp,
           style: TextStyle(
             color: Colors.black,
           ),

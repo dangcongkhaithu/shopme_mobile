@@ -58,7 +58,7 @@ class ProductWidgetState extends State<ProductWidget> {
     if (widget.products.length != 0) {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 0.75,
+          childAspectRatio: 0.65,
           mainAxisSpacing: 20,
           crossAxisCount: 2,
         ),
@@ -105,7 +105,7 @@ class ProductWidgetState extends State<ProductWidget> {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(

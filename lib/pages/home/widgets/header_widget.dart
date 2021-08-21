@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
+import 'package:shopme_mobile/resources/app_colors.dart';
 
 class HeaderWidget extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class HeaderWidgetState extends State<HeaderWidget> {
         Container(
             height: 200,
             width: _size.width,
+            color: AppColors.white,
             child: Carousel(
               indicatorBarColor: Colors.black.withOpacity(0),
               autoScrollDuration: Duration(seconds: 2),
