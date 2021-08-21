@@ -13,3 +13,14 @@ class GetProductSuccessState extends ProductState {
   @override
   List<Object?> get props => [products];
 }
+
+class SearchProductSuccessState extends ProductState {
+  final List<Product> products;
+
+  SearchProductSuccessState({
+    this.products = const [],
+  });
+
+  @override
+  List<Object?> get props => [products];
+}

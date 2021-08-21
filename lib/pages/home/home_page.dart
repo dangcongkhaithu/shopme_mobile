@@ -99,6 +99,7 @@ class HomepageState extends State<HomePage> {
         valueListenable: _productsNotifier,
         builder: (_, products, __) {
           return ProductWidget(
+            scrollPhysics: const NeverScrollableScrollPhysics(),
             products: products,
           );
         },

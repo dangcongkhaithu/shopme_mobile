@@ -6,10 +6,12 @@ import 'package:shopme_mobile/pages/product_detail/product_detail_page.dart';
 
 class ProductWidget extends StatefulWidget {
   final List<Product> products;
+  final ScrollPhysics? scrollPhysics;
 
   const ProductWidget({
     Key? key,
     required this.products,
+    this.scrollPhysics,
   }) : super(key: key);
 
   @override
@@ -62,7 +64,7 @@ class ProductWidgetState extends State<ProductWidget> {
           mainAxisSpacing: 20,
           crossAxisCount: 2,
         ),
-        physics: const NeverScrollableScrollPhysics(),
+        physics: widget.scrollPhysics,
         itemCount: widget.products.length,
         itemBuilder: (_, index) {
           return _buildProductItem(index, widget.products);

@@ -6,6 +6,8 @@ import 'package:shopme_mobile/di/injection.dart';
 
 abstract class ProductDatasource {
   Future<List<Product>> getProducts();
+
+  Future<List<Product>> searchProduct(String keyWord);
 }
 
 class ProductDatasourceImpl extends ProductDatasource {
@@ -19,6 +21,22 @@ class ProductDatasourceImpl extends ProductDatasource {
   Future<List<Product>> getProducts() async {
     List<Product> products = [];
     await _client.getProducts().then((value) => products = value).catchError((Object obj) {
+      switch (obj.runtimeType) {
+        case DioError:
+          final res = (obj as DioError).response;
+          _logger.e("Got error : ${res?.statusCode} -> ${res?.statusMessage}");
+          break;
+        default:
+      }
+    });
+
+    return products;
+  }
+
+  @override
+  Future<List<Product>> searchProduct(String keyWord) async {
+    List<Product> products = [];
+    await _client.searchProduct(keyWord).then((value) => products = value).catchError((Object obj) {
       switch (obj.runtimeType) {
         case DioError:
           final res = (obj as DioError).response;

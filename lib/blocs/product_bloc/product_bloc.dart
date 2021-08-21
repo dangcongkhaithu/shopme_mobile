@@ -11,4 +11,11 @@ class ProductBloc extends BaseBloc with SingleBlocMixin {
     single<List<Product>>(() => _repository.getProducts(),
         onSuccess: (products) => GetProductSuccessState(products: products));
   }
+
+  void searchProduct(String keyWord) {
+    single<List<Product>>(
+      () => _repository.searchProduct(keyWord),
+      onSuccess: (products) => SearchProductSuccessState(products: products),
+    );
+  }
 }

@@ -26,6 +26,9 @@ abstract class RestClient {
   @GET("/product/")
   Future<List<Product>> getProducts();
 
+  @GET("/product/search/{keyWord}")
+  Future<List<Product>> searchProduct(@Path() String keyWord);
+
   //User
   @POST("/user/signUp")
   Future<ResponseSignUp> signUp(@Body() RequestSignUp request);

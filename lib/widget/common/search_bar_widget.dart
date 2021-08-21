@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:shopme_mobile/blocs/product_bloc/product_bloc.dart';
 import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_bloc.dart';
 import 'package:shopme_mobile/blocs/recent_search_bloc/recent_search_state.dart';
 import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
@@ -8,6 +9,7 @@ import 'package:shopme_mobile/data/local/models/recent_search.dart';
 import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/cart/cart_page.dart';
+import 'package:shopme_mobile/pages/search/search_page.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -61,6 +63,9 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
       },
       onSubmitted: (query) {
         _recentSearchBloc.saveOne(query);
+        Navigator.of(context).push(SearchPage.getRoute(keyWord: query)).then((_) {
+          setState(() {});
+        });
       },
       actions: [
         FloatingSearchBarAction.searchToClear(
@@ -71,7 +76,7 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
           child: CircularButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              if(_sharedPref.token == "") {
+              if (_sharedPref.token == "") {
                 Navigator.of(context).push(SignInPage.getRoute());
               } else {
                 Navigator.of(context).push(CartPage.getRoute());
@@ -105,7 +110,11 @@ class SearchBarWidgetState extends State<SearchBarWidget> {
 
   Widget _buildRecentSearchItem(RecentSearch item) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(SearchPage.getRoute(keyWord: item.content)).then((_) {
+          setState(() {});
+        });
+      },
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
