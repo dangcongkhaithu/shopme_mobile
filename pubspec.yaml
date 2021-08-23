@@ -45,6 +45,7 @@ dependencies:
   path: ^1.8.0
   fluttertoast: ^8.0.8
   expandable_page_view: ^1.0.5
+  google_nav_bar: ^5.0.5
 
 dev_dependencies:
   flutter_test:

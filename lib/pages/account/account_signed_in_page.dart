@@ -9,6 +9,7 @@ import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profil
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/cart/cart_page.dart';
 import 'package:shopme_mobile/pages/common/common_page.dart';
+import 'package:shopme_mobile/pages/order/order_page.dart';
 import 'package:shopme_mobile/pages/profile/profile_page.dart';
 import 'package:shopme_mobile/pages/sign_in/sign_in_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
@@ -84,7 +85,9 @@ class AccountSignedInPageState extends State<AccountSignedInPage> {
           ),
         ),
         const SizedBox(height: 1),
-        _buildButtonNavigate("Orders", () {}),
+        _buildButtonNavigate("Orders", () {
+          Navigator.of(context).push(OrderPage.getRoute());
+        }),
         const SizedBox(height: 1),
         _buildButtonNavigate("Wish List", () {}),
         const SizedBox(height: 20),

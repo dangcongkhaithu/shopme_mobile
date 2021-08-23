@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:shopme_mobile/data/remote/models/remote/cart/cart.dart';
 import 'package:shopme_mobile/data/remote/models/remote/category/category.dart';
+import 'package:shopme_mobile/data/remote/models/remote/order/order.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profile.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/cart/request_cart.dart';
+import 'package:shopme_mobile/data/schemas/request/remote/order/request_order.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/sign_in/request_sign_in.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/sign_up/request_sign_up.dart';
 import 'package:shopme_mobile/data/schemas/request/remote/update_user_profile/request_update_user_profile.dart';
@@ -51,4 +53,14 @@ abstract class RestClient {
 
   @DELETE("/cart/delete/{cartItemId}")
   Future<ResponseBase> deleteCartItem(@Path() int cartItemId, @Query("token") String token);
+
+  //Order
+  @POST("/order/add")
+  Future<ResponseBase> order(@Query("token") String token);
+
+  @GET("/order/")
+  Future<List<Order>> getAllOrders(@Query("token") String token);
+
+  @PUT("/order/update")
+  Future<ResponseBase> updateStatus(@Query("token") String token, @Body() RequestOrder requestOrder);
 }

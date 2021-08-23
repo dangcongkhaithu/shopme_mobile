@@ -278,6 +278,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "google_nav_bar",
+      "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/google_nav_bar-5.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "graphs",
       "rootUri": "file:///Users/jobchat/development/flutter/.pub-cache/hosted/pub.dartlang.org/graphs-2.0.0",
       "packageUri": "lib/",
@@ -680,7 +686,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-08-05T10:20:24.924235Z",
+  "generated": "2021-08-23T10:31:37.489791Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

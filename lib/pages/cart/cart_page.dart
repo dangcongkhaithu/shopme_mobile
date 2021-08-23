@@ -1,17 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:path/path.dart' as Path;
 import 'package:shopme_mobile/blocs/cart_bloc/cart_bloc.dart';
 import 'package:shopme_mobile/blocs/cart_bloc/cart_state.dart';
 import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_bloc.dart';
 import 'package:shopme_mobile/blocs/get_user_profile_bloc/get_user_profile_state.dart';
+import 'package:shopme_mobile/blocs/order_bloc/order_bloc.dart';
+import 'package:shopme_mobile/blocs/order_bloc/order_state.dart';
 import 'package:shopme_mobile/data/local/shared_preferences/shared_pref.dart';
 import 'package:shopme_mobile/data/remote/models/remote/cart/cart.dart';
 import 'package:shopme_mobile/data/remote/models/remote/cart_item/cart_item.dart';
 import 'package:shopme_mobile/data/remote/models/remote/user_profile/user_profile.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/order/order_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/common/edit_profile_dialog.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
@@ -30,6 +34,7 @@ class CartPage extends StatefulWidget {
 class CartPageState extends State<CartPage> {
   late GetUserProfileBloc _getUserProfileBloc;
   late CartBloc _cartBloc;
+  late OrderBloc _orderBloc;
   late SharedPref _sharedPref;
   late ValueNotifier<double> _totalCostNotifier;
 
@@ -38,12 +43,20 @@ class CartPageState extends State<CartPage> {
     super.initState();
     _getUserProfileBloc = getIt<GetUserProfileBloc>();
     _cartBloc = getIt<CartBloc>();
+    _orderBloc = getIt<OrderBloc>();
     _sharedPref = getIt<SharedPref>();
     _totalCostNotifier = ValueNotifier(0);
 
     _cartBloc.stream.listen((event) {
       if (event is GetCartSuccessState) {
         _totalCostNotifier.value = event.cart.totalCost;
+      }
+    });
+
+    _orderBloc.stream.listen((event) {
+      if(event is AddOrderSuccessState) {
+        Fluttertoast.showToast(msg: "Order Success");
+        Navigator.of(context).push(OrderPage.getRoute());
       }
     });
   }
@@ -344,7 +357,9 @@ class CartPageState extends State<CartPage> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _orderBloc.addOrder(_sharedPref.token);
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),
