@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopme_mobile/blocs/product_bloc/product_bloc.dart';
 import 'package:shopme_mobile/blocs/product_bloc/product_state.dart';
+import 'package:shopme_mobile/core/common/helpers/translate_helper.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/di/injection.dart';
 import 'package:shopme_mobile/pages/home/widgets/category_widget.dart';
@@ -47,7 +48,7 @@ class HomepageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      color: AppColors.background,
+      color: AppColors.white,
       child: _buildPage(),
     );
   }
@@ -64,7 +65,9 @@ class HomepageState extends State<HomePage> {
             _buildHeader(),
             SliverToBoxAdapter(child: const SizedBox(height: 5)),
             _buildCategory(),
-            SliverToBoxAdapter(child: const SizedBox(height: 10)),
+            SliverToBoxAdapter(child: const SizedBox(height: 40)),
+            _buildTitleProduct(),
+            SliverToBoxAdapter(child: const SizedBox(height: 20)),
             _buildProduct(),
           ],
         ),
@@ -94,15 +97,34 @@ class HomepageState extends State<HomePage> {
   }
 
   Widget _buildProduct() {
-    return SliverToBoxAdapter(
-      child: ValueListenableBuilder<List<Product>>(
+    return  ValueListenableBuilder<List<Product>>(
         valueListenable: _productsNotifier,
         builder: (_, products, __) {
           return ProductWidget(
-            scrollPhysics: const NeverScrollableScrollPhysics(),
             products: products,
           );
         },
+
+    );
+  }
+
+  Widget _buildTitleProduct() {
+    return SliverToBoxAdapter(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30.0),
+            child: Text(
+              TranslateHelper.product,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

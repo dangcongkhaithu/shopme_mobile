@@ -6,6 +6,7 @@ import 'package:shopme_mobile/blocs/product_bloc/product_bloc.dart';
 import 'package:shopme_mobile/blocs/product_bloc/product_state.dart';
 import 'package:shopme_mobile/data/remote/models/remote/product/product.dart';
 import 'package:shopme_mobile/di/injection.dart';
+import 'package:shopme_mobile/pages/product_detail/product_detail_page.dart';
 import 'package:shopme_mobile/resources/app_colors.dart';
 import 'package:shopme_mobile/widget/common/product_widget.dart';
 import 'package:shopme_mobile/widget/page/base_page.dart';
@@ -79,9 +80,16 @@ class SearchPageState extends State<SearchPage> {
               child: Text("No Result"),
             );
           } else {
-            return ProductWidget(
-              scrollPhysics: const ScrollPhysics(),
-              products: products,
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 0.65,
+                mainAxisSpacing: 20,
+                crossAxisCount: 2,
+              ),
+              itemCount: products.length,
+              itemBuilder: (_, index) {
+                return _buildProductItem(index, products);
+              },
             );
           }
         } else {
@@ -90,6 +98,58 @@ class SearchPageState extends State<SearchPage> {
           );
         }
       },
+    );
+  }
+
+  Widget _buildProductItem(int index, List<Product> products) {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(ProductDetailPage.getRoute(product: products[index])),
+      child: Card(
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 180,
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                    image: NetworkImage(products[index].imageUrl),
+                    fit: BoxFit.contain,
+                  )),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                products[index].name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  products[index].price.toString() + " đ",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
     );
   }
 }

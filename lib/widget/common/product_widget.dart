@@ -6,12 +6,10 @@ import 'package:shopme_mobile/pages/product_detail/product_detail_page.dart';
 
 class ProductWidget extends StatefulWidget {
   final List<Product> products;
-  final ScrollPhysics? scrollPhysics;
 
   const ProductWidget({
     Key? key,
     required this.products,
-    this.scrollPhysics,
   }) : super(key: key);
 
   @override
@@ -21,20 +19,7 @@ class ProductWidget extends StatefulWidget {
 class ProductWidgetState extends State<ProductWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      color: Colors.white,
-      child: Column(
-        children: [
-          const SizedBox(height: 10),
-          _buildTitle(),
-          Expanded(
-            child: _buildProducts(),
-          ),
-        ],
-      ),
-    );
+    return _buildProducts();
   }
 
   Widget _buildTitle() {
@@ -58,22 +43,25 @@ class ProductWidgetState extends State<ProductWidget> {
 
   Widget _buildProducts() {
     if (widget.products.length != 0) {
-      return GridView.builder(
+      return SliverGrid(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 0.65,
           mainAxisSpacing: 20,
           crossAxisCount: 2,
         ),
-        physics: widget.scrollPhysics,
-        itemCount: widget.products.length,
-        itemBuilder: (_, index) {
-          return _buildProductItem(index, widget.products);
-        },
+        delegate: SliverChildBuilderDelegate(
+          (_, index) {
+            return _buildProductItem(index, widget.products);
+          },
+          childCount: widget.products.length,
+        ),
       );
     }
-    return Align(
-      alignment: Alignment.topCenter,
-      child: CircularProgressIndicator(),
+    return SliverToBoxAdapter(
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 
