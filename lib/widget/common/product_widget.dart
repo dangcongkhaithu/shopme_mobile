@@ -22,25 +22,6 @@ class ProductWidgetState extends State<ProductWidget> {
     return _buildProducts();
   }
 
-  Widget _buildTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 30.0),
-          child: Text(
-            TranslateHelper.product,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildProducts() {
     if (widget.products.length != 0) {
       return SliverGrid(
